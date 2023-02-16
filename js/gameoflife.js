@@ -26,7 +26,22 @@ const corners = (state = []) => {
   return {topRight: [Math.max(xvals), Math.max(yvals)], bottomLeft: [Math.min(xvals), Math.min(yvals)]};
 };
 
-const printCells = (state) => {};
+const printCells = (state) => {
+  const {topRight, bottomLeft} = corners(state);
+  let board = '';
+
+  for (let y = topRight[1]; y >= bottomLeft[1]; y--) {
+    let row = [];
+
+    for (let x = bottomLeft[0]; x <= topRight[0]; x++) {
+      row.push(printCell([x, y], state));
+    }
+
+    board = board + row.join(' ') + '\n';
+  }
+
+  return board;
+};
 
 const getNeighborsOf = ([x, y]) => {};
 
