@@ -59,7 +59,20 @@ const willBeAlive = (cell, state) => {
   return numLivingNeighbors === 3 || (contains.call(state, cell) && numLivingNeighbors === 2);
 };
 
-const calculateNext = (state) => {};
+const calculateNext = (state) => {
+  const {topRight, bottomLeft} = corners(state);
+  let next = [];
+
+  for (let y = topRight[1] + 1; y >= bottomLeft[1] - 1; y--) {
+    for (let x = bottomLeft[0] - 1; x <= topRight[0] + 1; x++) {
+      if (willBeAlive([x, y], state)) {
+        next.push([x, y]);
+      }
+    }
+  }
+
+  return next;
+};
 
 const iterate = (state, iterations) => {};
 
