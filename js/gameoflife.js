@@ -84,7 +84,11 @@ const iterate = (state, iterations) => {
   return states;
 };
 
-const main = (pattern, iterations) => {};
+const main = (pattern, iterations) => {
+  const states = iterate(startPatterns[pattern], iterations);
+
+  states.forEach(state => console.log(printCells(state)));
+};
 
 const startPatterns = {
     rpentomino: [
